@@ -10,9 +10,12 @@ class Guest:
         self.wallet = wallet
         self.entry_paid = False
 
-    def pay_entry(self, customer):
-        if customer.wallet < 5:
+    def pay_entry(self, customer, front_till):
+        if customer.entry_paid == True:
+            return 'Already paid'
+        elif customer.wallet < 5:
             return 'Not enough money'
         else:
             customer.wallet -= 5
+            front_till.receive_entry_payment()
             customer.entry_paid = True

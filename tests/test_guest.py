@@ -9,6 +9,8 @@ class TestGuest(unittest.TestCase):
         self.guest2 = Guest('Jaap', 45)
         self.guest3 = Guest('Denis', 0)
 
+        self.front_till = FrontTill(100)
+
 #1
     def test_guest_has_name__1(self):
         self.assertEqual('Peter', self.guest1.name)
@@ -31,5 +33,5 @@ class TestGuest(unittest.TestCase):
 
 #
     def test_paid_entry__yes(self):
-        self.guest1.pay_entry(self.guest1)
+        self.guest1.pay_entry(self.guest1, self.front_till)
         self.assertEqual(True, self.guest1.entry_paid)

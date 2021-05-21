@@ -21,17 +21,32 @@ class TestFrontTill(unittest.TestCase):
 
 #
     def test_entry_check__yes(self):
-        self.guest1.pay_entry(self.guest1)
+        self.guest1.pay_entry(self.guest1, self.front_till)
         self.assertEqual(True, self.front_till.check_entry_paid(self.guest1))
 
 #
     def test_entry_check__before_pay_and_after(self):
         self.assertEqual('Need to pay entry', self.front_till.check_entry_paid(self.guest1))
-        self.guest1.pay_entry(self.guest1)
+        self.guest1.pay_entry(self.guest1, self.front_till)
         self.assertEqual(True, self.front_till.check_entry_paid(self.guest1))
 
+    def test_entry_payment__true(self):
+        actual = self.front_till.receive_entry_payment()
+        self.assertEqual(105, actual)
+
     def test_money_changed_hands__can_pay(self):
-        self.guest1.pay_entry(self.guest1)
-        self.front_till.receive_entry_payment(self.guest1)
-        # self.assertEqual(105, self.front_till.total)
+        self.guest1.pay_entry(self.guest1, self.front_till)
+        
+        self.assertEqual(105, self.front_till.total)
         self.assertEqual(95, self.guest1.wallet)
+
+    def test_money_changed_hands__can_pay_two(self):
+        self.guest2.pay_entry(self.guest2, self.front_till)
+
+        self.assertEqual(105, self.front_till.total)
+        self.assertEqual(40, self.guest2.wallet)
+
+    def test_entry__cannot_afford(self):
+        self.guest3.pay_entry(self.guest3, self.front_till)
+        self.assertEqual(100, self.front_till.total)
+        self.assertEqual(0, self.guest3.wallet)
