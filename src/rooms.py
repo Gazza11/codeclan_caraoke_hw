@@ -1,5 +1,7 @@
 from src.song import Song
 
+# Rooms have a name and a capacity that is set per room. They also have two empty lists for songs ans guests.
+
 class Rooms:
     def __init__(self, room_name, capacity):
         self.room_name = room_name

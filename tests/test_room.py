@@ -7,9 +7,9 @@ class TestRoom(unittest.TestCase):
 
     def setUp(self):
 
-        self.guest1 = Guest('Peter')
-        self.guest2 = Guest('Jaap')
-        self.guest3 = Guest('Denis')
+        self.guest1 = Guest('Peter', 100)
+        self.guest2 = Guest('Jaap', 45)
+        self.guest3 = Guest('Denis', 0)
 
         self.song1 = Song('Song A')
         self.song2 = Song('Song B')
@@ -114,7 +114,7 @@ class TestRoom(unittest.TestCase):
         self.assertEqual('Jaap', self.room1.check_person(self.room1.list_of_current_guests, self.guest2))
         self.assertEqual('Person not in this room.', self.room2.check_person(self.room2.list_of_current_guests, self.guest2))
 
-# EXTENSIONS
+# EXTENSIONS - Capacity
 
 #
     def test_capacity__room1(self):
@@ -135,12 +135,17 @@ class TestRoom(unittest.TestCase):
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(19, self.room1.capacity)
 
+#
     def test_space_left__room1(self):
         self.assertEqual(20, self.room1.space_left_in_room())
 
+#
     def test_space_left__room2(self):
         self.assertEqual(1, self.room2.space_left_in_room())
 
+#
     def test_no_space__room2(self):
         self.room2.add_person(self.room2.list_of_current_guests, self.guest1)
         self.assertEqual('Room is full!', self.room2.add_person(self.room2.list_of_current_guests, self.guest2))
+
+#
