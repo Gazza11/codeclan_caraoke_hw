@@ -12,6 +12,7 @@ class Rooms:
     def remove_person(self, room_list, person):
         if self.check_person(room_list, person) == person.name:
             self.list_of_current_guests.remove(person)
+        return 'Person not in this room.'
 
     def add_song(self, new_song):
         self.list_of_songs.append(new_song)

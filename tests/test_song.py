@@ -7,6 +7,7 @@ class TestSong(unittest.TestCase):
         self.song2 = Song('Song B')
         self.song3 = Song('Song C')
 
+#1
     def test_song_has_name(self):
         self.assertEqual('Song A', self.song1.song_name)
 

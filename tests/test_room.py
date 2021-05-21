@@ -44,13 +44,13 @@ class TestRoom(unittest.TestCase):
         self.room1.add_person(self.guest1)
         self.assertEqual(1, len(self.room1.list_of_current_guests))
 
-#
+#7
     def test_add_person__more_than_1(self):
         self.room1.add_person(self.guest1)
         self.room1.add_person(self.guest2)
         self.assertEqual(2, len(self.room1.list_of_current_guests))
 
-#
+#8
     def test_add_person__multiple_rooms(self):
         self.room1.add_person(self.guest1)
         self.room1.add_person(self.guest2)
@@ -58,21 +58,22 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(2, len(self.room1.list_of_current_guests))
         self.assertEqual(1, len(self.room2.list_of_current_guests))
 
-    def test_add_person__room1(self):
+#9
+    def test_check_person_in_room__person_there(self):
         self.room1.add_person(self.guest1)
-        self.assertEqual(1, len(self.room1.list_of_current_guests))
+        self.assertEqual('Peter', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))
 
+#10
+    def test_check_person_in_room__person_not_there(self):
+        self.assertEqual('Person not in this room.', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))
+
+#11
     def test_remove_person__room1(self):
         self.room1.add_person(self.guest1)
         self.room1.add_person(self.guest2)
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(1, len(self.room1.list_of_current_guests))
-
-# 
-    def test_check_person_in_room__person_there(self):
-        self.room1.add_person(self.guest1)
-        self.assertEqual('Peter', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))
-
-# 
-    def test_check_person_in_room__person_not_there(self):
-        self.assertEqual('Person not in this room.', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))
+#12
+    def test_remove_person__not_in_room(self):
+        self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
+        self.assertEqual('Person not in this room.', self.room1.remove_person(self.room1.list_of_current_guests, self.guest1))
