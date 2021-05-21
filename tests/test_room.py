@@ -103,5 +103,23 @@ class TestRoom(unittest.TestCase):
     def test_capacity__room1(self):
         self.assertEqual(20, self.room1.capacity)
 
+#
     def test_capacity__room2(self):
         self.assertEqual(1, self.room2.capacity)
+
+#
+    def test_capacity__add_person(self):
+        self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
+        self.assertEqual(19, self.room1.capacity)
+
+    def test_capacity__remove_person(self):
+        self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
+        self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
+        self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
+        self.assertEqual(19, self.room1.capacity)
+
+    def test_space_left__room1(self):
+        self.assertEqual(20, self.room1.space_left_in_room(self.room1))
+
+    def test_space_left__room2(self):
+        self.assertEqual(1, self.room2.space_left_in_room(self.room2))

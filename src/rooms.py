@@ -10,11 +10,13 @@ class Rooms:
     def add_person(self, room_list, new_person):
         if self.check_person(room_list, new_person) != new_person.name:
             self.list_of_current_guests.append(new_person)
+            self.capacity -= 1
         return 'Already in room'
 
     def remove_person(self, room_list, person):
         if self.check_person(room_list, person) == person.name:
             self.list_of_current_guests.remove(person)
+            self.capacity += 1
         return 'Person not in this room.'
 
     def add_song(self, new_song):
@@ -25,3 +27,7 @@ class Rooms:
             if person == person_name:
                 return person.name
         return 'Person not in this room.'
+
+    def space_left_in_room(self, room):
+        space_left = self.capacity - len(self.list_of_current_guests)
+        return space_left
