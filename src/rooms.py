@@ -6,8 +6,10 @@ class Rooms:
         self.list_of_current_guests = []
         self.list_of_songs = []
 
-    def add_person(self, new_person):
-        self.list_of_current_guests.append(new_person)
+    def add_person(self, room_list, new_person):
+        if self.check_person(room_list, new_person) != new_person.name:
+            self.list_of_current_guests.append(new_person)
+        return 'Already in room'
 
     def remove_person(self, room_list, person):
         if self.check_person(room_list, person) == person.name:
