@@ -15,8 +15,8 @@ class TestRoom(unittest.TestCase):
         self.song2 = Song('Song B')
         self.song3 = Song('Song C')
 
-        self.room1 = Rooms('Aurum')
-        self.room2 = Rooms('Institute')
+        self.room1 = Rooms('Aurum', 20)
+        self.room2 = Rooms('Institute', 1)
 
 #1
     def test_room_has_name__one(self):
@@ -96,3 +96,12 @@ class TestRoom(unittest.TestCase):
     def test_remove_person__not_in_room(self):
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual('Person not in this room.', self.room1.remove_person(self.room1.list_of_current_guests, self.guest1))
+
+# EXTENSIONS
+
+#
+    def test_capacity__room1(self):
+        self.assertEqual(20, self.room1.capacity)
+
+    def test_capacity__room2(self):
+        self.assertEqual(1, self.room2.capacity)

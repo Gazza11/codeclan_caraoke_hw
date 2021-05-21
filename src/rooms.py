@@ -1,10 +1,11 @@
 from src.song import Song
 
 class Rooms:
-    def __init__(self, room_name):
+    def __init__(self, room_name, capacity):
         self.room_name = room_name
         self.list_of_current_guests = []
         self.list_of_songs = []
+        self.capacity = capacity
 
     def add_person(self, room_list, new_person):
         if self.check_person(room_list, new_person) != new_person.name:
