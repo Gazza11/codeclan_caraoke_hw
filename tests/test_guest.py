@@ -1,12 +1,12 @@
 import unittest
-from src.guests import Guests
+from src.guest import Guest
 from src.rooms import Rooms
 
 class TestGuest(unittest.TestCase):
     def setUp(self):
-        self.guest1 = Guests('Peter')
-        self.guest2 = Guests('Jaap')
-        self.guest3 = Guests('Denis')
+        self.guest1 = Guest('Peter')
+        self.guest2 = Guest('Jaap')
+        self.guest3 = Guest('Denis')
 
     def test_guest_has_name__1(self):
         self.assertEqual('Peter', self.guest1.name)

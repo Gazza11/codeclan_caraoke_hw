@@ -1,43 +1,78 @@
 import unittest
 from src.rooms import Rooms
-from src.guests import Guests
-from src.songs import Songs
+from src.guest import Guest
+from src.song import Song
 
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
 
-        self.guest1 = Guests('Peter')
-        self.guest2 = Guests('Jaap')
-        self.guest3 = Guests('Denis')
+        self.guest1 = Guest('Peter')
+        self.guest2 = Guest('Jaap')
+        self.guest3 = Guest('Denis')
 
-        self.song1 = Songs('Song A')
-        self.song2 = Songs('Song B')
-        self.song3 = Songs('Song C')
+        self.song1 = Song('Song A')
+        self.song2 = Song('Song B')
+        self.song3 = Song('Song C')
 
-        
-
-        # self.list_of_current_guests1 = [self.guest1, self.guest2]
-        # self.list_of_current_guests2 = [self.guest3]
         self.room1 = Rooms('Aurum')
         self.room2 = Rooms('Institute')
 
+#1
     def test_room_has_name__one(self):
         self.assertEqual('Aurum', self.room1.room_name)
 
+#2
     def test_room_has_name__two(self):
         self.assertEqual('Institute', self.room2.room_name)
 
+#3
     def test_room_has_guests__one(self):
         self.assertEqual([], self.room1.list_of_current_guests)
 
+#4
     def test_room_has_list_of_songs__one(self):
         self.assertEqual([], self.room1.list_of_songs)
 
+#5
     def test_add_song_to_room(self):
         self.room1.add_song(self.song1)
         self.assertEqual(1, len(self.room1.list_of_songs))
 
+#6
     def test_add_person_to_room__room1(self):
         self.room1.add_person(self.guest1)
         self.assertEqual(1, len(self.room1.list_of_current_guests))
+
+#
+    def test_add_person__more_than_1(self):
+        self.room1.add_person(self.guest1)
+        self.room1.add_person(self.guest2)
+        self.assertEqual(2, len(self.room1.list_of_current_guests))
+
+#
+    def test_add_person__multiple_rooms(self):
+        self.room1.add_person(self.guest1)
+        self.room1.add_person(self.guest2)
+        self.room2.add_person(self.guest3)
+        self.assertEqual(2, len(self.room1.list_of_current_guests))
+        self.assertEqual(1, len(self.room2.list_of_current_guests))
+
+    def test_add_person__room1(self):
+        self.room1.add_person(self.guest1)
+        self.assertEqual(1, len(self.room1.list_of_current_guests))
+
+    def test_remove_person__room1(self):
+        self.room1.add_person(self.guest1)
+        self.room1.add_person(self.guest2)
+        self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
+        self.assertEqual(1, len(self.room1.list_of_current_guests))
+
+# 
+    def test_check_person_in_room__person_there(self):
+        self.room1.add_person(self.guest1)
+        self.assertEqual('Peter', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))
+
+# 
+    def test_check_person_in_room__person_not_there(self):
+        self.assertEqual('Person not in this room.', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))

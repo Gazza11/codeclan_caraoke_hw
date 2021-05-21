@@ -1,11 +1,11 @@
 import unittest
-from src.songs import Songs
+from src.song import Song
 
 class TestSong(unittest.TestCase):
     def setUp(self):
-        self.song1 = Songs('Song A')
-        self.song2 = Songs('Song B')
-        self.song3 = Songs('Song C')
+        self.song1 = Song('Song A')
+        self.song2 = Song('Song B')
+        self.song3 = Song('Song C')
 
     def test_song_has_name(self):
         self.assertEqual('Song A', self.song1.song_name)
