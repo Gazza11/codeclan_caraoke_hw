@@ -37,3 +37,7 @@ class TestRoom(unittest.TestCase):
     def test_add_song_to_room(self):
         self.room1.add_song(self.song1)
         self.assertEqual(1, len(self.room1.list_of_songs))
+
+    def test_add_person_to_room__room1(self):
+        self.room1.add_person(self.guest1)
+        self.assertEqual(1, len(self.room1.list_of_current_guests))
