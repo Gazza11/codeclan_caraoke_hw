@@ -12,3 +12,5 @@
 # Added age functionality and went very smoothly. As age functionality was added just to stop
 # underage entrance, the test for those who are over 18 should just be that the previous tests
 # pass still.
+
+#Need to get more consistent in variable naming.

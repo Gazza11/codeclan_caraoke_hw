@@ -69,3 +69,7 @@ class TestFrontTill(unittest.TestCase):
 #11
     def test_age_function_within_receive_entry_function__under_18(self):
         self.assertEqual('Too young', self.front_till.receive_entry_payment(self.guest3))
+
+#12
+    def test_age_function_within_receive_entry_function__under_18(self):
+        self.assertEqual('Too young', self.front_till.receive_entry_payment(self.guest3))

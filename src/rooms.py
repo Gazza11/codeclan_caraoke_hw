@@ -2,6 +2,8 @@ from src.song import Song
 
 # Rooms have a name and a capacity that is set per room. They also have two empty lists for songs ans guests.
 
+# Current song will be the last added to the playlist.
+
 class Rooms:
     def __init__(self, room_name, capacity):
         self.room_name = room_name
@@ -36,3 +38,14 @@ class Rooms:
     def space_left_in_room(self):
         space_left = self.capacity - len(self.list_of_current_guests)
         return space_left
+
+    def current_song(self, room):
+        if len(room.list_of_songs) == 0:
+            return 'Playlist empty'
+        else:
+            room.list_of_songs.reverse() ### Different ways of doing this.
+            song_on_now = room.list_of_songs[0]
+            # index = len(room.list_of_songs) - 1
+            # song_on_now = room.list_of_songs[index]
+            # song_on_now = room.list_of_songs.pop()
+        return song_on_now.song_name

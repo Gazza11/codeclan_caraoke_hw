@@ -149,3 +149,29 @@ class TestRoom(unittest.TestCase):
     def test_no_space__room2(self):
         self.room2.add_person(self.room2.list_of_current_guests, self.guest1)
         self.assertEqual('Room is full!', self.room2.add_person(self.room2.list_of_current_guests, self.guest2))
+
+# Advanced Extensions
+
+#25
+    def test_current_song__empty(self):
+        self.assertEqual('Playlist empty', self.room1.current_song(self.room1))
+
+#26
+    def test_current_song__1_song(self):
+        self.room1.add_song(self.song1)
+        self.assertEqual('Song A', self.room1.current_song(self.room1))
+
+    def test_current_song__1_song(self):
+        self.room1.add_song(self.song1)
+        self.room1.add_song(self.song2)
+        self.room1.add_song(self.song3)
+        self.assertEqual('Song C', self.room1.current_song(self.room1))
+
+    def test_current_song__2_songs_2_rooms(self): #Helped see .pop() doesn't make sense to use.
+        self.room1.add_song(self.song1)
+        self.room1.add_song(self.song2)
+        self.room2.add_song(self.song3)
+        self.assertEqual('Song B', self.room1.current_song(self.room1))
+        self.assertEqual('Song C', self.room2.current_song(self.room2))
+        self.assertEqual(2, len(self.room1.list_of_songs))
+        self.assertEqual(1, len(self.room2.list_of_songs))
