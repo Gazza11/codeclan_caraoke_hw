@@ -11,5 +11,6 @@ class TestSong(unittest.TestCase):
     def test_song_has_name(self):
         self.assertEqual('Song A', self.song1.song_name)
 
+#2
     def test_song_has_duration(self):
         self.assertEqual(150, self.song1.duration)

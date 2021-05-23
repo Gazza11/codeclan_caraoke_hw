@@ -161,12 +161,14 @@ class TestRoom(unittest.TestCase):
         self.room1.add_song(self.song1)
         self.assertEqual('Song A', self.room1.current_song(self.room1))
 
+#27
     def test_current_song__1_song(self):
         self.room1.add_song(self.song1)
         self.room1.add_song(self.song2)
         self.room1.add_song(self.song3)
         self.assertEqual('Song C', self.room1.current_song(self.room1))
 
+# 28
     def test_current_song__2_songs_2_rooms(self): #Helped see .pop() doesn't make sense to use.
         self.room1.add_song(self.song1)
         self.room1.add_song(self.song2)
@@ -175,3 +177,4 @@ class TestRoom(unittest.TestCase):
         self.assertEqual('Song C', self.room2.current_song(self.room2))
         self.assertEqual(2, len(self.room1.list_of_songs))
         self.assertEqual(1, len(self.room2.list_of_songs))
+
