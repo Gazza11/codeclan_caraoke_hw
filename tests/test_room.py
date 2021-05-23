@@ -27,11 +27,11 @@ class TestRoom(unittest.TestCase):
         self.assertEqual('Institute', self.room2.room_name)
 
 #3
-    def test_room_has_guests__one(self):
+    def test_room_has_guests__empty(self):
         self.assertEqual([], self.room1.list_of_current_guests)
 
 #4
-    def test_room_has_list_of_songs__one(self):
+    def test_room_has_list_of_songs__empty(self):
         self.assertEqual([], self.room1.list_of_songs)
 
 #5
@@ -39,31 +39,31 @@ class TestRoom(unittest.TestCase):
         self.room1.add_song(self.song1)
         self.assertEqual(1, len(self.room1.list_of_songs))
     
-#
+#6
     def test_add_song__check_both_rooms(self):
         self.room1.add_song(self.song1)
         self.assertEqual(1, len(self.room1.list_of_songs))
         self.assertEqual(0,len (self.room2.list_of_songs))
 
-#
+#7
     def test_add_song__multiple(self):
         self.room1.add_song(self.song1)
         self.room1.add_song(self.song2)
         self.assertEqual(2, len(self.room1.list_of_songs))
         self.assertEqual(0,len (self.room2.list_of_songs))
 
-#
+#8
     def test_add_person_to_room__room1(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(1, len(self.room1.list_of_current_guests))
 
-#
+#9
     def test_add_person__more_than_1(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
         self.assertEqual(2, len(self.room1.list_of_current_guests))
 
-#
+#10
     def test_add_person__multiple_rooms(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
@@ -71,81 +71,81 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(2, len(self.room1.list_of_current_guests))
         self.assertEqual(1, len(self.room2.list_of_current_guests))
 
-#
+#11
     def test_check_person_in_room__person_there(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual('Peter', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))
 
-#
+#12
     def test_check_person_in_room__person_not_there(self):
         self.assertEqual('Person not in this room.', self.room1.check_person(self.room1.list_of_current_guests, self.guest1))
 
-# 
-    def test_check_person_in_room__person_there(self):
+#13 
+    def test_check_person_in_room__person_in_room1_but_check_other_room(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual('Person not in this room.', self.room2.check_person(self.room2.list_of_current_guests, self.guest1))
-#
+
+#14
     def test_add_person_to_room__already_in(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual('Already in room', self.room1.add_person(self.room1.list_of_current_guests, self.guest1))
-#
+
+#15
     def test_remove_person__room1(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(1, len(self.room1.list_of_current_guests))
 
-#
+#16
     def test_remove_person__not_in_room(self):
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual('Person not in this room.', self.room1.remove_person(self.room1.list_of_current_guests, self.guest1))
 
-
-#
+#17
     def test_add_then_remove_then_check(self):
-        self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
-        self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
-        self.assertEqual(2, len(self.room1.list_of_current_guests))
-        self.assertEqual(0, len(self.room2.list_of_current_guests))
-        self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
-        self.assertEqual(1, len(self.room1.list_of_current_guests))
-        self.assertEqual(0, len(self.room2.list_of_current_guests))
-        self.assertEqual('Jaap', self.room1.check_person(self.room1.list_of_current_guests, self.guest2))
+        self.room1.add_person(self.room1.list_of_current_guests, self.guest1) #Add Peter, room 1
+        self.room1.add_person(self.room1.list_of_current_guests, self.guest2) #Add Jaap, room 1
+        self.assertEqual(2, len(self.room1.list_of_current_guests)) #Check room 1
+        self.assertEqual(0, len(self.room2.list_of_current_guests)) #Check room 2
+        self.room1.remove_person(self.room1.list_of_current_guests, self.guest1) #Remove Peter, room 1
+        self.assertEqual(1, len(self.room1.list_of_current_guests)) #Check room 1
+        self.assertEqual(0, len(self.room2.list_of_current_guests)) #Check room 2
+        self.assertEqual('Jaap', self.room1.check_person(self.room1.list_of_current_guests, self.guest2)) 
         self.assertEqual('Person not in this room.', self.room2.check_person(self.room2.list_of_current_guests, self.guest2))
 
 # EXTENSIONS - Capacity
 
-#
+#19
     def test_capacity__room1(self):
         self.assertEqual(20, self.room1.capacity)
 
-#
+#20
     def test_capacity__room2(self):
         self.assertEqual(1, self.room2.capacity)
 
-#
+#21
     def test_capacity__add_person(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(19, self.room1.capacity)
 
+#22
     def test_capacity__remove_person(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(19, self.room1.capacity)
 
-#
+#23
     def test_space_left__room1(self):
         self.assertEqual(20, self.room1.space_left_in_room())
 
-#
+#24
     def test_space_left__room2(self):
         self.assertEqual(1, self.room2.space_left_in_room())
 
-#
+#25
     def test_no_space__room2(self):
         self.room2.add_person(self.room2.list_of_current_guests, self.guest1)
         self.assertEqual('Room is full!', self.room2.add_person(self.room2.list_of_current_guests, self.guest2))
-
-#

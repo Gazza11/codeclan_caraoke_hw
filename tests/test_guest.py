@@ -19,19 +19,26 @@ class TestGuest(unittest.TestCase):
     def test_guest_has_name__2(self):
         self.assertEqual('Jaap', self.guest2.name)
 
-#   
+# Extensions - Entrty Fee
+
+#3  
     def test_wallet__person_1(self):
         self.assertEqual(100, self.guest1.wallet)
 
-# 
+#4
     def test_wallet__person_3(self):
         self.assertEqual(0, self.guest3.wallet)
 
-#
+#5
     def test_paid_entry__no(self):
         self.assertEqual(False, self.guest1.entry_paid)
 
-#
+#6
     def test_paid_entry__yes(self):
         self.guest1.pay_entry(self.guest1, self.front_till)
         self.assertEqual(True, self.guest1.entry_paid)
+
+
+# Advanced Extensions
+
+#7
