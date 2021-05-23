@@ -7,9 +7,9 @@ class TestFrontTill(unittest.TestCase):
     def setUp(self):
         self.front_till = FrontTill(100)
 
-        self.guest1 = Guest('Peter', 100)
-        self.guest2 = Guest('Jaap', 45)
-        self.guest3 = Guest('Denis', 0)
+        self.guest1 = Guest('Peter', 100, 35)
+        self.guest2 = Guest('Jaap', 45, 40)
+        self.guest3 = Guest('Denis', 0, 16)
 
 
 ## Extensions - Entry Fee

@@ -7,9 +7,9 @@ class TestRoom(unittest.TestCase):
 
     def setUp(self):
 
-        self.guest1 = Guest('Peter', 100)
-        self.guest2 = Guest('Jaap', 45)
-        self.guest3 = Guest('Denis', 0)
+        self.guest1 = Guest('Peter', 100, 35)
+        self.guest2 = Guest('Jaap', 45, 40)
+        self.guest3 = Guest('Denis', 0, 16)
 
         self.song1 = Song('Song A')
         self.song2 = Song('Song B')
