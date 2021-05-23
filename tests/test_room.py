@@ -11,9 +11,9 @@ class TestRoom(unittest.TestCase):
         self.guest2 = Guest('Jaap', 45, 40)
         self.guest3 = Guest('Denis', 0, 16)
 
-        self.song1 = Song('Song A')
-        self.song2 = Song('Song B')
-        self.song3 = Song('Song C')
+        self.song1 = Song('Song A', 150)
+        self.song2 = Song('Song B', 210)
+        self.song3 = Song('Song C', 1000)
 
         self.room1 = Rooms('Aurum', 20)
         self.room2 = Rooms('Institute', 1)
