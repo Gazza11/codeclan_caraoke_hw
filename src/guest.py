@@ -5,10 +5,11 @@ from src.front_till import FrontTill
 
 
 class Guest:
-    def __init__(self, name, wallet):
+    def __init__(self, name, wallet, age):
         self.name = name
         self.wallet = wallet
         self.entry_paid = False
+        self.age = age
 
     def pay_entry(self, customer, front_till):
         if customer.entry_paid == True:
@@ -17,5 +18,5 @@ class Guest:
             return 'Not enough money'
         else:
             customer.wallet -= 5
-            front_till.receive_entry_payment()
+            front_till.receive_entry_payment(customer)
             customer.entry_paid = True

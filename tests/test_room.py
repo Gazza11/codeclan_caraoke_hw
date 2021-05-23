@@ -7,9 +7,9 @@ class TestRoom(unittest.TestCase):
 
     def setUp(self):
 
-        self.guest1 = Guest('Peter', 100)
-        self.guest2 = Guest('Jaap', 45)
-        self.guest3 = Guest('Denis', 0)
+        self.guest1 = Guest('Peter', 100, 35)
+        self.guest2 = Guest('Jaap', 45, 40)
+        self.guest3 = Guest('Denis', 0, 16)
 
         self.song1 = Song('Song A')
         self.song2 = Song('Song B')
@@ -117,35 +117,61 @@ class TestRoom(unittest.TestCase):
 
 # EXTENSIONS - Capacity
 
-#19
+#18
     def test_capacity__room1(self):
         self.assertEqual(20, self.room1.capacity)
 
-#20
+#19
     def test_capacity__room2(self):
         self.assertEqual(1, self.room2.capacity)
 
-#21
+#20
     def test_capacity__add_person(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(19, self.room1.capacity)
 
-#22
+#21
     def test_capacity__remove_person(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(19, self.room1.capacity)
 
-#23
+#22
     def test_space_left__room1(self):
         self.assertEqual(20, self.room1.space_left_in_room())
 
-#24
+#23
     def test_space_left__room2(self):
         self.assertEqual(1, self.room2.space_left_in_room())
 
-#25
+#24
     def test_no_space__room2(self):
         self.room2.add_person(self.room2.list_of_current_guests, self.guest1)
         self.assertEqual('Room is full!', self.room2.add_person(self.room2.list_of_current_guests, self.guest2))
+
+# Advanced Extensions
+
+#25
+    def test_current_song__empty(self):
+        self.assertEqual('Playlist empty', self.room1.current_song(self.room1))
+
+#26
+    def test_current_song__1_song(self):
+        self.room1.add_song(self.song1)
+        self.assertEqual('Song A', self.room1.current_song(self.room1))
+
+    def test_current_song__1_song(self):
+        self.room1.add_song(self.song1)
+        self.room1.add_song(self.song2)
+        self.room1.add_song(self.song3)
+        self.assertEqual('Song C', self.room1.current_song(self.room1))
+
+    def test_current_song__2_songs_2_rooms(self): #Helped see .pop() doesn't make sense to use.
+        self.room1.add_song(self.song1)
+        self.room1.add_song(self.song2)
+        self.room2.add_song(self.song3)
+        self.assertEqual('Song B', self.room1.current_song(self.room1))
+        self.assertEqual('Song C', self.room2.current_song(self.room2))
+        self.assertEqual(2, len(self.room1.list_of_songs))
+        self.assertEqual(1, len(self.room2.list_of_songs))
