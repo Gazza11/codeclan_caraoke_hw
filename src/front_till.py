@@ -3,9 +3,12 @@ class FrontTill:
         self.total = total
 
 
-    def receive_entry_payment(self): # Not sure if this is correct, works but seems wrong.
-        self.total += 5
-        return self.total
+    def receive_entry_payment(self, customer):
+        if self.age_check(customer) == False:
+            return 'Too young'
+        else:
+            self.total += 5
+            return self.total
 
 ## This was the original function set up but seemed to always return None.
 
@@ -22,3 +25,8 @@ class FrontTill:
             return True
         else:
             return 'Need to pay entry'
+
+    def age_check(self, customer):
+        if customer.age <18:
+            return False
+        

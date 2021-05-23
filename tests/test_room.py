@@ -117,35 +117,35 @@ class TestRoom(unittest.TestCase):
 
 # EXTENSIONS - Capacity
 
-#19
+#18
     def test_capacity__room1(self):
         self.assertEqual(20, self.room1.capacity)
 
-#20
+#19
     def test_capacity__room2(self):
         self.assertEqual(1, self.room2.capacity)
 
-#21
+#20
     def test_capacity__add_person(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(19, self.room1.capacity)
 
-#22
+#21
     def test_capacity__remove_person(self):
         self.room1.add_person(self.room1.list_of_current_guests, self.guest1)
         self.room1.add_person(self.room1.list_of_current_guests, self.guest2)
         self.room1.remove_person(self.room1.list_of_current_guests, self.guest1)
         self.assertEqual(19, self.room1.capacity)
 
-#23
+#22
     def test_space_left__room1(self):
         self.assertEqual(20, self.room1.space_left_in_room())
 
-#24
+#23
     def test_space_left__room2(self):
         self.assertEqual(1, self.room2.space_left_in_room())
 
-#25
+#24
     def test_no_space__room2(self):
         self.room2.add_person(self.room2.list_of_current_guests, self.guest1)
         self.assertEqual('Room is full!', self.room2.add_person(self.room2.list_of_current_guests, self.guest2))

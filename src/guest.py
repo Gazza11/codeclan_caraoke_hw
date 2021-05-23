@@ -18,5 +18,5 @@ class Guest:
             return 'Not enough money'
         else:
             customer.wallet -= 5
-            front_till.receive_entry_payment()
+            front_till.receive_entry_payment(customer)
             customer.entry_paid = True

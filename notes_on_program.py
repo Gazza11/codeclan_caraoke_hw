@@ -6,5 +6,9 @@
 #      ^ Fixed this ^ 
 
 # Still feel like with some of the class parts of the tests I'm putting out fires till I get it right.
-# 
+
 # Also feel like some of the functions should maybe be in different classes.
+
+# Added age functionality and went very smoothly. As age functionality was added just to stop
+# underage entrance, the test for those who are over 18 should just be that the previous tests
+# pass still.
