@@ -1,19 +1,27 @@
 from src.song import Song
 
+# Rooms have a name and a capacity that is set per room. They also have two empty lists for songs ans guests.
+
 class Rooms:
-    def __init__(self, room_name):
+    def __init__(self, room_name, capacity):
         self.room_name = room_name
         self.list_of_current_guests = []
         self.list_of_songs = []
+        self.capacity = capacity
 
     def add_person(self, room_list, new_person):
-        if self.check_person(room_list, new_person) != new_person.name:
+        if self.space_left_in_room() < 1:
+            return 'Room is full!'
+        elif self.check_person(room_list, new_person) == new_person.name:
+            return 'Already in room'
+        else:
             self.list_of_current_guests.append(new_person)
-        return 'Already in room'
+            self.capacity -= 1
 
     def remove_person(self, room_list, person):
         if self.check_person(room_list, person) == person.name:
             self.list_of_current_guests.remove(person)
+            self.capacity += 1
         return 'Person not in this room.'
 
     def add_song(self, new_song):
@@ -24,3 +32,7 @@ class Rooms:
             if person == person_name:
                 return person.name
         return 'Person not in this room.'
+
+    def space_left_in_room(self):
+        space_left = self.capacity - len(self.list_of_current_guests)
+        return space_left
